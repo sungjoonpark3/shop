@@ -26,6 +26,7 @@ public class MemberController {
 		model.addAttribute("memberlist",memberlist);
 		return "member/getListMember";
 	}
+	
 	//member 수정 목록불러오기
 	@GetMapping("/getUpdateListMember")
 	public String getUpdateListMember(MemberVO memberVO,Model model){
@@ -43,9 +44,11 @@ public class MemberController {
 	//member 가입 입력화면
 	@PostMapping("/insertMember")
 	public String insertMember(MemberVO memberVO) {
+		memberVO.setUserGrade("DefaultUser");
 		memberService.insertMember(memberVO);
 		//추후 로그인 페인지로 이동하기로 변경하기
-		return "redirect:index.html";
+		//회원가입 완료후 -> 가입완료 메시지 -> 홈으로 이동
+		return "member/joinSucess";
 	}
 	
 	//member 수정화면

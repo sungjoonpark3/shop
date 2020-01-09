@@ -25,7 +25,10 @@ public class MemberVO {
 	private Long seq;
 	
 	//user 이름
-	private String name;
+	private String userName;
+	
+	//user 생년월일
+	private String userDate;
 	
 	//user 아이디
 	private String userId;

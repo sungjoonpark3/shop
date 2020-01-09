@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://wwww.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/lib/js/bootstrap.min.js">
+<link rel="stylesheet" href="/lib/css/bootstrap.css">
+<script type="text/javascript" src="/lib/js/daumAddress.js" ></script>
+<script type="text/javascript" src="/lib/js/common.js"></script>
+<title>회원가입</title>
 
+</head>
+
+<body th:align="center">
+	<div class="container">
+		<hr>
+			<h1 th:align="center">회원가입</h1>
+		<hr>
+	</div>
+
+	<form th:action="@{/member/insertMember}" method="post">
+		<div class ="container">
+			<div class="row">
+				<div class="col">
+					이름 : <input type="text" name="userName"/>
+				</div>		
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					생년월일 : <input type="text" name="userDate"/>ex) 201212
+				</div>		
+			</div>
+		
+			<div class="row">
+				<div class="col">
+					아이디 : <input type="text" name="userId"/>
+				</div>		
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					비밀번호 : <input type="password" name="userPassword"/>
+				</div>		
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					이메일 : <input type="text" name="userEmail"/>
+				</div>		
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					전화번호 :
+					<select name="userPhone1">
+						  <option selected>번호선택</option>
+						  <option value="011">011</option>
+						  <option value="010">010</option>
+						  <option value="018">018</option>
+						  <option value="019">019</option>
+					</select>-<input type="text" name="userPhone2"/>-<input type="text" name="userPhone3"/>
+			
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					우편번호 : <input type="text" name="addressPostNumber" id="addressPostNumber"disabled/>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-info" onClick="CALL_fn_SearchAddress()">우편번호찾기</button>
+				</div>	
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					도로명주소 : <input type="text" name="addressRoadName" id="addressRoadName" disabled/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					지번주소 : <input type="text" name="addressGnumberName" id="addressGnumberName" disabled/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					상세주소 : <input type="text" name="addressDetail" id="addressDetail"/>
+				</div>
+			</div>
+			
+			<hr>
+			<div class="container" th:align="center">
+				<button type="submit" class="btn btn-primary">회원가입</button>
+				<button type="button" class="btn btn-primary" onClick="fn_indexPageMove()">취소하기</button>
+			</div>
+			<hr>
+				
+		</div>
+	</form>
 </body>
 </html>
