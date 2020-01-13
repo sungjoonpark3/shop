@@ -55,7 +55,7 @@ public class MemberController {
 	@PostMapping("/updateMember")
 	public String updateMember(MemberVO memberVO) {
 		memberService.updateMember(memberVO);
-		return "redirect:updateMember";
+		return "member/getListMember";
 	}
 	
 	//member 삭제후 메인페이지로 이동
