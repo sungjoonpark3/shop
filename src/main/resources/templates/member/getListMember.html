@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://wwww.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/lib/js/bootstrap.min.js">
+<link rel="stylesheet" href="/lib/css/bootstrap.css">
+<script type="text/javascript" src="/lib/js/daumAddress.js" ></script>
+<script type="text/javascript" src="/lib/js/common.js"></script>
+<title>회원목록 리스트</title>
+
 </head>
-<body>
-	GETLIST
+<body th:align="center">
+		
+		<table class="table table-hover;table table-striped">
+			<tr align = "center">
+				<th>번호</th>
+				<th>이름</th>
+				<th>생년월일</th>
+				<th>아이디</th>
+				<th>패스워드</th>
+				<th>이메일</th>
+				<th>핸드폰번호</th>
+				<th>우편번호</th>
+				<th>주소</th>
+				<th>등급</th>
+				<th>가입일</th>
+				<th>수정일</th>
+				<th>버튼</th>
+			</tr>
+			
+			<tr th:each="memberVO,state:${memberlist}" th:align="center">
+				
+				<!-- seq 자동증가를 위한 부분 -->
+				<td th:text="${state.count}">
+				
+				<!-- 회원이름 -->
+				<td th:text="${memberVO.userName}">
+				
+				<!-- 회원생년월일 -->
+				<td th:text="${memberVO.userDate}">
+				
+				<!-- 회원아이디 -->
+				<td th:text="${memberVO.userId}">
+				
+				<!-- 회원패스워드 -->
+				<td th:text="${memberVO.userPassword}">
+				
+				<!-- 회원이메일 -->
+				<td th:text="${memberVO.userEmail}">
+				
+				<!-- 회원전화번호 -->
+				<td th:text="${memberVO.userPhone1+
+							   memberVO.userPhone2+
+							   memberVO.userPhone3}">
+				
+				<!-- 회원우편번호 -->			   
+				<td th:text="${memberVO.addressPostNumber}">
+				
+				<!-- 회원주소 -->
+				<td th:text="${memberVO.addressRoadName}+
+							 ${memberVO.addressGnumberName}+
+							 ${memberVO.addressDetail}">
+				
+				<!-- 회원등급 -->
+				<td th:text="${memberVO.userGrade}">
+				
+				<!-- 회원가입일 -->
+				<td th:text="${#dates.format(memberVO.createDate,'yyyy-MM-dd')}">
+				
+				<!-- 회원정보수정일-->
+				<td th:text="${#dates.format(memberVO.updateDate,'yyyy-MM-dd')}">
+				
+				<!-- 회원관리버튼 -->
+				<td align="center">
+					<!-- 수정버튼 -->
+					<a th:href="@{/member/updateMember(seq=${memberVO.seq})}">
+						<button type="button" class="btn btn-danger">수정</button>
+					</a>
+					<!-- 삭제버튼 -->
+					<a th:href="@{/member/deleteMember(seq=${memberVO.seq})}">
+						<button type="button" class="btn btn-danger">삭제</button>
+					</a>
+				</td>					
+			</tr>
+		</table>
+		
+	
 </body>
 </html>

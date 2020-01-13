@@ -44,7 +44,7 @@ public class MemberController {
 	//member 가입 입력화면
 	@PostMapping("/insertMember")
 	public String insertMember(MemberVO memberVO) {
-		memberVO.setUserGrade("DefaultUser");
+		memberVO.setUserGrade("USER");
 		memberService.insertMember(memberVO);
 		//추후 로그인 페인지로 이동하기로 변경하기
 		//회원가입 완료후 -> 가입완료 메시지 -> 홈으로 이동
@@ -62,7 +62,7 @@ public class MemberController {
 	@GetMapping("/deleteMember")
 	public String deleteMember(MemberVO memberVO) {
 		memberService.deleteMember(memberVO);
-		return "forward:index";
+		return "member/getListMember";
 	}
 	
 	
