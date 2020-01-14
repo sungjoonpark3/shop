@@ -34,6 +34,14 @@ public class MemberController {
 		return"member/updateMember";
 	}
 	
+	//member 수정화면
+	//member 개인정보 수정 후에 인덱스페이지로 이동
+	@PostMapping("/updateMember")
+	public String updateMember(MemberVO memberVO) {
+		memberService.updateMember(memberVO);
+		return "redirect:/";
+	}
+	
 	
 	//member 가입화면
 	@GetMapping("/insertMember")
@@ -50,19 +58,12 @@ public class MemberController {
 		//회원가입 완료후 -> 가입완료 메시지 -> 홈으로 이동
 		return "member/joinSucess";
 	}
-	
-	//member 수정화면
-	@PostMapping("/updateMember")
-	public String updateMember(MemberVO memberVO) {
-		memberService.updateMember(memberVO);
-		return "member/getListMember";
-	}
-	
+		
 	//member 삭제후 메인페이지로 이동
 	@GetMapping("/deleteMember")
 	public String deleteMember(MemberVO memberVO) {
 		memberService.deleteMember(memberVO);
-		return "member/getListMember";
+		return "forward:getListMember";
 	}
 	
 	

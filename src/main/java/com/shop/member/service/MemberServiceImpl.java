@@ -22,10 +22,18 @@ public class MemberServiceImpl implements MemberService {
 
 	//member Update(수정)
 	@Override
-	public void updateMember(MemberVO memeberVO) {
-		MemberVO findMemberVO=memberRepository.findById(memeberVO.getSeq()).get();
-		//수정할 리스트 set으로 아래처럼구현하면됨
-		//findMemberVO.setUserPassword(memeberVO.getUserPassword());
+	public void updateMember(MemberVO memberVO) {
+		MemberVO findMemberVO=memberRepository.findById(memberVO.getSeq()).get();
+		//수정 할 리스트 
+		findMemberVO.setUserPassword(memberVO.getUserPassword());
+		findMemberVO.setUserEmail(memberVO.getUserEmail());
+		findMemberVO.setUserPhone1(memberVO.getUserPhone1());
+		findMemberVO.setUserPhone2(memberVO.getUserPhone2());
+		findMemberVO.setUserPhone3(memberVO.getUserPhone3());
+		findMemberVO.setAddressPostNumber(memberVO.getAddressPostNumber());
+		findMemberVO.setAddressRoadName(memberVO.getAddressRoadName());
+		findMemberVO.setAddressGnumberName(memberVO.getAddressGnumberName());
+		findMemberVO.setAddressDetail(memberVO.getAddressDetail());
 		memberRepository.save(findMemberVO);		
 	}
 

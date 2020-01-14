@@ -13,14 +13,20 @@
 <body th:align="center">
 	<h1 th:align="center">회원정보수정</h1>
 	<hr>
-	<form th:action="@{/member/getUpdateListMember}" method="post">
+	<form th:action="@{/member/updateMember}" method="post">
 		<table th:align="center" border="1" th:cellpadding="0" th:cellsapcing="0">
 			
 			<tr>
 				<td>
 					<input name="seq" type="hidden" th:value="${memberVO.seq}">
-					<input name="userId" type="text" th:value="${memberVO.userId}">
+					<input name="userId" type="text" th:value="${memberVO.userId}" readonly="readonly" disabled>
 				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<input name="userName" type="text" th:value="${memberVO.userName}" readonly="readonly" disabled>
+				</td>							
 			</tr>
 			
 			<tr>
@@ -31,7 +37,7 @@
 			
 			<tr>
 				<td>
-					<input name="userDate" type="text" th:value="${memberVO.userDate}">
+					<input name="userDate" type="text" th:value="${memberVO.userDate}" readonly="readonly" disabled>
 				</td>
 			</tr>
 			
@@ -51,7 +57,7 @@
 			
 			<tr>
 				<td>
-					우편번호 : <input type="text" name="addressPostNumber" id="addressPostNumber" th:value="${memberVO.addressPostNumber}"/>
+					우편번호 : <input type="text" name="addressPostNumber" id="addressPostNumber" th:value="${memberVO.addressPostNumber}" readonly="readonly"/>
 						
 							<button type="button" class="btn btn-info" onClick="CALL_fn_SearchAddress()">우편번호찾기</button>
 							
@@ -60,13 +66,13 @@
 			
 			<tr>
 				<td>
-					도로명주소 : <input type="text" name="addressRoadName" id="addressRoadName" th:value="${memberVO.addressRoadName}"/>		
+					도로명주소 : <input type="text" name="addressRoadName" id="addressRoadName" th:value="${memberVO.addressRoadName}" readonly="readonly"/>		
 				</td>
 			</tr>
 			
 			<tr>
 				<td>
-					지번주소 : <input type="text" name="addressGnumberName" id="addressGnumberName" th:value="${memberVO.addressGnumberName}"/>
+					지번주소 : <input type="text" name="addressGnumberName" id="addressGnumberName" th:value="${memberVO.addressGnumberName}" readonly="readonly"/>
 				</td>
 			</tr>
 			
