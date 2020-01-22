@@ -1,13 +1,13 @@
 package com.shop.member.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.member.domain.MemberVO;
 import com.shop.member.service.MemberService;
@@ -21,9 +21,11 @@ public class MemberController {
 	
 	//member 목록 불러오기
 	@GetMapping("/getListMember")
-	public String getListMember(Model model,MemberVO memberVO) {
-		List<MemberVO> memberlist=memberService.getMemberList(memberVO);
+	public String getListMember(@RequestParam(value="page",defaultValue="0") int page,Model model,MemberVO memberVO) {
+		Page<MemberVO> memberlist=memberService.getMemberList(memberVO,page);
 		model.addAttribute("memberlist",memberlist);
+		model.addAttribute("pages",memberlist);
+		model.addAttribute("maxPage",5);
 		return "member/getListMember";
 	}
 	
