@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="configFragment">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- 공통으로 쓰이는 css파일을넣는다.-->
+ 		
+		<link rel="stylesheet" href="/lib/css/bootstrap.css">
+		<link rel="stylesheet" href="/lib/css/headerstyle.css">
+    <!-- 컨텐츠페이지의 CSS 영역이 들어감 -->
+  		<th:block layout:fragment="css"></th:block>
+
+    <!-- 공통으로 쓰이는 css파일을넣는다.-->
+	    <link rel="stylesheet" href="/lib/js/bootstrap.min.js">
+	  	<script type="text/javascript" src="/lib/js/daumAddress.js" ></script>
+		<script type="text/javascript" src="/lib/js/common.js"></script>
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <!-- 컨텐츠페이지의 스크립트 영역이 들어감 -->
+    <th:block layout:fragment="script"></th:block>
+</head>
+
+</html>

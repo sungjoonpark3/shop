@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://wwww.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head>
+<html 
+	xmlns:th="http://wwww.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout/default">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/lib/js/bootstrap.min.js">
-<link rel="stylesheet" href="/lib/css/bootstrap.css">
-<script type="text/javascript" src="/lib/js/daumAddress.js" ></script>
-<script type="text/javascript" src="/lib/js/common.js"></script>
-<title>회원목록 리스트</title>
+<!-- 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
 
-</head>
-<body th:align="center">
+<!-- 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
 
-		<table class="table table-hover;table table-striped">
+<div layout:fragment="content">
+			<table class="table table-hover;table table-striped">
 			<tr align = "center">
 				<th>번호</th>
 				<th>이름</th>
@@ -125,6 +128,8 @@
 					</div>
 		<!--  Pagination End-->				
 		</div>
-			
-</body>
+	
+</div>
+
+
 </html>

@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html xmlns:th="http://wwww.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	    <link rel="stylesheet" href="/lib/js/bootstrap.min.js">
-		<link rel="stylesheet" href="/lib/css/bootstrap.css">
-		<script type="text/javascript" src="/lib/js/daumAddress.js" ></script>
-		<script type="text/javascript" src="/lib/js/common.js"></script>
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <style>
-      /* Simple Reset CSS */
+     /* Simple Reset CSS */
       * {
         margin: 0; padding: 0;
         box-sizing: border-box;
@@ -20,7 +8,7 @@
         color: #58666e;
         background-color: #f0f3f4;
         -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjus: 100%;  /* iphone font size 변경 방지 */
+        -webkit-text-size-adjus: 100%;  /* iphone font size ���� ���� */
       }
       li { list-style: none; }
       a { text-decoration: none; }
@@ -60,11 +48,11 @@
         margin-right: 20px;
       }
       .nav-items > li {
-        display: inline-block; /* 가로정렬 */
+        display: inline-block; /* �������� */
       }
       .nav-items > li > a {
         line-height: 60px; /* for Vertical Centering */
-        padding: 0 30px;   /* nav item간 간격 */
+        padding: 0 30px;   /* nav item�� ���� */
         color: rgba(0,0,0,0.4);
       }
       .nav-items > li > a:hover {
@@ -84,7 +72,7 @@
         -ms-user-select: none;      /* IE 10+ */
         user-select: none;          /* Likely future */
       }
-      /* nav icon의 내부 막대 */
+      /* nav icon�� ���� ���� */
       .navicon-bar {
         background-color: #333;
         display: block;
@@ -137,7 +125,7 @@
         top: 60px;
         bottom: 0;
 
-        width: 200px;  /* 너비 고정 */
+        width: 200px;  /* �ʺ� ���� */
         padding-top: 25px;
         background-color: #333;
       }
@@ -180,7 +168,7 @@
       }
       /* footer */
       footer {
-        /* footer를 aside위에 올리기 위해 사용(부유객체) */
+        /* footer�� aside���� �ø��� ���� ���(������ü) */
         position: absolute;
         height: 60px;
         width: 100%;
@@ -277,96 +265,3 @@
           line-height: 50px;
         }
       }
-    </style>
-  </head>
-<body>
-  <div id="wrap">
-    <header>
-      <a class="logo" href="#home"><img src="https://poiemaweb.com/img/logo.png"></a>
-      <nav>
-        <input class="nav-toggle" id="nav-toggle" type="checkbox">
-        <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
-        <ul class="nav-items">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#contact">MENU</a></li>
-          <li><a href="#news">LOGIN</a></li>          
-          <li><a href="#about">INTRODUCE</a></li>
-        </ul>
-      </nav>
-    </header> 
-  </div>
-  
-  <table class="table table-hover;table table-striped">
-			<tr align = "center">
-				<th>번호</th>
-				<th>이름</th>
-				<th>생년월일</th>
-				<th>아이디</th>
-				<th>패스워드</th>
-				<th>이메일</th>
-				<th>핸드폰번호</th>
-				<th>우편번호</th>
-				<th>주소</th>
-				<th>등급</th>
-				<th>가입일</th>
-				<th>수정일</th>
-				<th>버튼</th>
-			</tr>
-			
-			<tr th:each="memberVO,state:${memberlist}" th:align="center">
-				
-				<!-- seq 자동증가를 위한 부분 -->
-				<td th:text="${state.count}">
-				
-				<!-- 회원이름 -->
-				<td th:text="${memberVO.userName}">
-				
-				<!-- 회원생년월일 -->
-				<td th:text="${memberVO.userDate}">
-				
-				<!-- 회원아이디 -->
-				<td th:text="${memberVO.userId}">
-				
-				<!-- 회원패스워드 -->
-				<td th:text="${memberVO.userPassword}">
-				
-				<!-- 회원이메일 -->
-				<td th:text="${memberVO.userEmail}">
-				
-				<!-- 회원전화번호 -->
-				<td th:text="${memberVO.userPhone1+
-							   memberVO.userPhone2+
-							   memberVO.userPhone3}">
-				
-				<!-- 회원우편번호 -->			   
-				<td th:text="${memberVO.addressPostNumber}">
-				
-				<!-- 회원주소 -->
-				<td th:text="${memberVO.addressRoadName}+
-							 ${memberVO.addressGnumberName}+
-							 ${memberVO.addressDetail}">
-				
-				<!-- 회원등급 -->
-				<td th:text="${memberVO.userGrade}">
-				
-				<!-- 회원가입일 -->
-				<td th:text="${#dates.format(memberVO.createDate,'yyyy-MM-dd')}">
-				
-				<!-- 회원정보수정일-->
-				<td th:text="${#dates.format(memberVO.updateDate,'yyyy-MM-dd')}">
-				
-				<!-- 회원관리버튼 -->
-				<td align="center">
-					<!-- 수정버튼 -->
-					<a th:href="@{/member/getUpdateListMember(seq=${memberVO.seq})}">
-						<button type="button" class="btn btn-danger">수정</button>
-					</a>
-					<!-- 삭제버튼 -->
-					<a th:href="@{/member/deleteMember(seq=${memberVO.seq})}">
-						<button type="button" class="btn btn-danger">삭제</button>
-					</a>
-				</td>					
-			</tr>
-		</table>
-</body>
-</html>
