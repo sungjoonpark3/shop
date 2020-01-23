@@ -25,7 +25,7 @@ public class MemberController {
 		Page<MemberVO> memberlist=memberService.getMemberList(memberVO,page);
 		model.addAttribute("memberlist",memberlist);
 		model.addAttribute("pages",memberlist);
-		model.addAttribute("maxPage",5);
+		model.addAttribute("maxPage",10);
 		return "member/getListMember";
 	}
 	
@@ -67,6 +67,14 @@ public class MemberController {
 		memberService.deleteMember(memberVO);
 		return "forward:getListMember";
 	}
+	
+	//작업용
+	//member 가입화면
+	@GetMapping("/joinSucess")
+	public String joinsucessMemberView() {
+		return "member/joinSucess";
+	}
+	
 	
 	
 

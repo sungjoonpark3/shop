@@ -10,7 +10,7 @@
 
 </head>
 <body th:align="center">
-		
+
 		<table class="table table-hover;table table-striped">
 			<tr align = "center">
 				<th>번호</th>
@@ -84,34 +84,47 @@
 			</tr>
 		</table>
 		
-		<div class="page-num"
-     th:with="start=${(pages.number/maxPage)*maxPage + 1},
-                  end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})" >
-    <ul>
-        <li th:if="${start > 1}">
-            <a th:href="@{/member/getListMember?(page=0)}" th:text="'<<'"></a></li>
-        </li>
-
-        <li th:if="${start > 1}">
-            <a th:href="@{/member/getListMember?(page=${start - maxPage})}" th:text="'<'"></a>
-        </li>
-
-
-        <li th:each="page: ${#numbers.sequence(start, end)}">
-            <a th:href="@{/member/getListMember?(page=${page-1})}" th:text="${page}"></a></li>
-        </li>
-
-        <li th:if="${end < pages.totalPages}">
-            <a th:href="@{/member/getListMember?(page=${start + maxPage})}" th:text="'>'"></a>
-        </li>
-
-        <li th:if="${end < pages.totalPages}">
-            <a th:href="@{/member/getListMember?(page=${pages.totalPages-1})}" th:text="'>>'"></a></li>
-        </li>
-    </ul>
-
-</div>
-		
-	
+		<!--  Pagination Start-->
+			<div class="container">
+				<div class="row">
+					<div class="col"></div>
+							<div class="col" th:with="start=${(pages.number/maxPage)*maxPage + 1},end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})" >
+							    <nav aria-label="pagination">
+							        <ul class="pagination">				            
+						                <!--제일 처음-->
+						                    <li class="page-item" th:if="${start>1}">
+						                        <a class="page-link" th:href="@{/member/getListMember?(page=0)}" tabindex="-1">PREVIOUS</a>
+						                    </li>
+						                    
+						                <!--이전 페이지-->
+							                <li class="page-item" th:if="${start > 1}">
+							                    <a class="page-link" th:href="@{/member/getListMember?(page=${start - maxPage})}"><</a>
+							                </li>
+						
+						                <!--현재 페이지-->   
+						                    <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}">
+						                        <a class="page-link" th:href="@{/member/getListMember?(page=${page-1})}" th:text="${page}"> 
+						                            <span class="sr-only">(current)</span>
+						                        </a>
+						                    </li>
+						                
+						                <!--다음 페이지-->
+							                <li class="page-item" th:if="${end < pages.totalPages}">
+							                    <a class="page-link" th:href="@{/member/getListMember?(page=${start + maxPage})}">></a>
+							                </li>
+						                    
+						
+						                <!--마지막페이지이동-->
+						                    <li class="page-item" th:if="${end < pages.totalPages}">
+						                        <a class="page-link"th:href="@{/member/getListMember?(page=${start + maxPage})}">Next</a>
+						                    </li>
+							        </ul>
+							    </nav>
+							</div>					
+						<div class="col"></div>
+					</div>
+		<!--  Pagination End-->				
+		</div>
+			
 </body>
 </html>

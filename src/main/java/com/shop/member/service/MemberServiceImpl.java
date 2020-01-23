@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 	//member List(회원목록)
 	@Override
 	public Page<MemberVO> getMemberList(MemberVO memberVO,int startPage) {
-		Pageable pageable=PageRequest.of(startPage, 100, Sort.Direction.DESC, "seq");
+		Pageable pageable=PageRequest.of(startPage, 20, Sort.Direction.DESC, "seq");
 		return memberRepository.getMemberList(pageable);
 	}
 

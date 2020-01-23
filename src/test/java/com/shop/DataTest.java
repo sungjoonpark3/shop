@@ -17,7 +17,7 @@ public class DataTest {
 	
 	@Test
 	public void testData() {
-		for(int i =0;i<100;i++) {
+		for(int i =101;i<600;i++) {
 		MemberVO m1 = new MemberVO();
 		
 		m1.setUserId("testdata"+i+"번째");
