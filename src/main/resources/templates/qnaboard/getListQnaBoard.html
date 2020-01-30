@@ -1,10 +1,113 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<html 
+	xmlns:th="http://wwww.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout/default">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
 
-</body>
+<!-- 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content" style="padding-top: 60px;" class="table-responsive">
+			<!-- <table class="table table-hover;table table-striped"> -->
+			<table class="table table-sm table-hover table-striped">
+				<tr align = "center">
+					<th>번호</th>
+					<th>카테고리</th>
+					<th>제목</th>					
+					<th>내용</th>
+					<th>등록일</th>
+					<th>수정일</th>					
+					<th>조회수</th>
+					<th>버튼</th>
+				</tr>
+			
+				<tr th:each="qnaBoardVO,state:${qnaboardlist}" th:align="center">
+					
+					<!-- seq 자동증가를 위한 부분 -->
+					<td th:text="${state.count}">
+					
+					<!-- QnABoard 제목-->
+					<td th:text="${qnaBoardVO.contentCategory}">
+					
+					<!-- QnABoard 제목-->
+					<td th:text="${qnaBoardVO.title}">
+					
+					<!-- QnABoard 내용-->
+					<td th:text="${qnaBoardVO.content}">
+					
+					<!-- QnABoard 등록일-->
+					<td th:text="${#dates.format(qnaBoardVO.createDate,'yyyy-MM-dd')}">
+					
+					<!-- QnABoard 수정일-->
+					<td th:text="${#dates.format(qnaBoardVO.updateDate,'yyyy-MM-dd')}">
+					
+					<!-- QnABoard 조회수 -->
+					<th th:text="${qnaBoardVO.cnt}">
+					
+					
+					<!-- QnABoard 관리버튼 -->
+					<td align="center">
+						<!-- 수정버튼 -->
+						<a th:href="@{/qnaboard/updateQnaBoard(seq=${qnaBoardVO.seq})}">
+							<button type="button" class="btn btn-danger">수정</button>
+						</a>
+						<!-- 삭제버튼 -->
+						<a th:href="@{/qnaboard/deleteQnaBoard(seq=${qnaBoardVO.seq})}">
+							<button type="button" class="btn btn-danger">삭제</button>
+						</a>
+					</td>					
+				</tr>
+		</table>
+		
+		<!--  Pagination Start-->
+			<div class="container">
+				<div class="row">
+					<div class="col"></div>
+							<div class="col" th:with="start=${(pages.number/maxPage)*maxPage + 1},end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})" >
+							    <nav aria-label="pagination">
+							        <ul class="pagination">				            
+						                <!--제일 처음-->
+						                    <li class="page-item" th:if="${start>1}">
+						                        <a class="page-link" th:href="@{/qnaboard/getListQnaBoard?(page=0)}" tabindex="-1">PREVIOUS</a>
+						                    </li>
+						                    
+						                <!--이전 페이지-->
+							                <li class="page-item" th:if="${start > 1}">
+							                    <a class="page-link" th:href="@{/qnaboard/getListQnaBoard?(page=${start - maxPage})}"><</a>
+							                </li>
+						
+						                <!--현재 페이지-->   
+						                    <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}">
+						                        <a class="page-link" th:href="@{/qnaboard/getListQnaBoard?(page=${page-1})}" th:text="${page}"> 
+						                            <span class="sr-only">(current)</span>
+						                        </a>
+						                    </li>
+						                
+						                <!--다음 페이지-->
+							                <li class="page-item" th:if="${end < pages.totalPages}">
+							                    <a class="page-link" th:href="@{/qnaboard/getListQnaBoard?(page=${start + maxPage})}">></a>
+							                </li>
+						                    
+						
+						                <!--마지막페이지이동-->
+						                    <li class="page-item" th:if="${end < pages.totalPages}">
+						                        <a class="page-link"th:href="@{/qnaboard/getListQnaBoard?(page=${start + maxPage})}">Next</a>
+						                    </li>
+							        </ul>
+							    </nav>
+							</div>					
+						<div class="col"></div>
+					</div>
+		<!--  Pagination End-->				
+		</div>
+	
+</div>
+
+
 </html>
